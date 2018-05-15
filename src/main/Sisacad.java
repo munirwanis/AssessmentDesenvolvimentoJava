@@ -48,7 +48,7 @@ public class Sisacad {
 	public static void menu() {
 		System.out.println("1 - Consultar");
 		System.out.println("0 - Fechar Sistema");
-		System.out.println("Opcao:");
+		System.out.println("Opcao: ");
 		int opcao;
 		do {
 			opcao = scanner.nextInt();
@@ -57,7 +57,7 @@ public class Sisacad {
 				consultar();
 				break;
 			case 0:   
-				break;
+				continue;
 			default:
 				System.out.println("Opção inválida.");
 			}
@@ -68,13 +68,14 @@ public class Sisacad {
 		System.out.println("0 - Voltar");
 		System.out.println("Digite a matrícula: ");
 		String matricula = "";
-		do {
+		
+		while(!matricula.equalsIgnoreCase("0")) {
 			matricula = scanner.nextLine();
 			
-			boolean encontrado = false; 
+			boolean encontrado = true;
 			
 			for (Pessoa pessoa : pessoas) {
-				if (pessoa.getMatricula() == matricula) {
+				if (pessoa.getMatricula().equalsIgnoreCase(matricula)) {
 					encontrado = true;
 					if (pessoa instanceof Aluno) {
 						System.out.println(((Aluno) pessoa).toString());
@@ -82,7 +83,12 @@ public class Sisacad {
 						System.out.println(((Professor) pessoa).toString());
 					} else if (pessoa instanceof Administrativo) {
 						System.out.println(((Administrativo) pessoa).toString());
+					} else {
+						System.out.println(pessoa.toString());
 					}
+					break;
+				} else {
+					encontrado = false;
 				}
 			}
 			
@@ -90,7 +96,7 @@ public class Sisacad {
 				System.out.println("Pessoa não encontrada.");
 			}
 			
-		} while(matricula != "0");
+		}
 		menu();
 	}
 
