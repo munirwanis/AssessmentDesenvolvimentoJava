@@ -46,11 +46,12 @@ public class Sisacad {
 	}
 
 	public static void menu() {
-		System.out.println("1 - Consultar");
-		System.out.println("0 - Fechar Sistema");
-		System.out.println("Opcao: ");
 		int opcao;
 		do {
+			System.out.println("1 - Consultar");
+			System.out.println("0 - Fechar Sistema");
+			System.out.println("Opcao: ");
+			
 			opcao = scanner.nextInt();
 			switch(opcao){
 			case 1:
@@ -64,15 +65,15 @@ public class Sisacad {
 		} while(opcao != 0);
 	}
 
-	public static void consultar() {
-		System.out.println("0 - Voltar");
-		System.out.println("Digite a matrícula: ");
+	public static void consultar() {		
 		String matricula = "";
-		
-		while(!matricula.equalsIgnoreCase("0")) {
-			matricula = scanner.nextLine();
+		scanner.nextLine();
+		do {
+			System.out.println("0 - Voltar");
+			System.out.println("Digite a matrícula: ");
+			boolean encontrado = false;
 			
-			boolean encontrado = true;
+			matricula = scanner.nextLine();
 			
 			for (Pessoa pessoa : pessoas) {
 				if (pessoa.getMatricula().equalsIgnoreCase(matricula)) {
@@ -87,8 +88,6 @@ public class Sisacad {
 						System.out.println(pessoa.toString());
 					}
 					break;
-				} else {
-					encontrado = false;
 				}
 			}
 			
@@ -96,8 +95,7 @@ public class Sisacad {
 				System.out.println("Pessoa não encontrada.");
 			}
 			
-		}
-		menu();
+		} while(!matricula.equalsIgnoreCase("0"));
 	}
 
 }

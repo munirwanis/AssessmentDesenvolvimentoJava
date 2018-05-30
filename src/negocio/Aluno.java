@@ -26,11 +26,17 @@ public class Aluno extends Pessoa {
 
 	@Override
 	public String toString() {
-		String result = super.toString();
+		String result = "Aluno:\n";
+		result += super.toString();
 		result += "Cursos: \n";
 		for (Curso curso : cursos) {
 			result += curso.toString() + "\n";
 		}
 		return result;
+	}
+
+	@Override
+	public int compareTo(Pessoa o) {
+		return this.getNome().compareTo(o.getNome());
 	}
 }

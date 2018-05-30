@@ -1,6 +1,6 @@
 package negocio;
 
-public abstract class Pessoa {
+public abstract class Pessoa implements Comparable<Pessoa> {
 	private String nome;
 	private String cpf;
 	private String matricula;
@@ -39,5 +39,14 @@ public abstract class Pessoa {
 	@Override
 	public String toString() {
 		return String.format("Nome: %s\nCPF: %s\nMatrícula: %s\n", this.getNome(), this.getCpf(), this.getMatricula());
+	}
+
+	public int compareTo(Administrativo o) {
+		if (this.nome == o.getNome() &&
+				this.cpf == o.getCpf() &&
+				this.matricula == o.getMatricula()) {
+			return 0;
+		}
+		return -1;
 	}
 }

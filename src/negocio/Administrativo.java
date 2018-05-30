@@ -24,4 +24,32 @@ public class Administrativo extends Pessoa {
 		}
 		this.salario = salario;
 	}
+
+	@Override
+	public String toString() {
+		String result = "Administrativo:\n";
+		result += super.toString();
+		result += String.format("Salário: %.2f\n", this.getSalario());
+		return result;
+	}
+
+	@Override
+	public int compareTo(Administrativo o) {
+		return super.compareTo(o);
+	}
+
+	@Override
+	public int compareTo(Pessoa o) {
+		if (o instanceof Administrativo) {
+			Administrativo a = (Administrativo) o;
+			if (this.salario == a.getSalario()) {
+				return 0;
+			} else if (this.salario > a.getSalario()) {
+				return 1;
+			} else {
+				return -1;
+			}
+		}
+		return -1;
+	}
 }

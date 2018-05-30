@@ -41,13 +41,29 @@ public class Professor extends Pessoa {
 
 	@Override
 	public String toString() {
-		String result = super.toString();
+		String result = "Professor:\n";
+		result += super.toString();
 		result += String.format("Salário: %.2f\n", this.salario);
 		result += "Cursos: \n";
 		for (Curso curso : cursos) {
 			result += curso.toString() + "\n";
 		}
 		return result;
+	}
+
+	@Override
+	public int compareTo(Pessoa o) {
+		if (o instanceof Professor) {
+			Professor p = (Professor) o;
+			if (this.calcularSalario() == p.calcularSalario()) {
+				return 0;
+			} else if (this.calcularSalario() > p.calcularSalario()) {
+				return 1;
+			} else {
+				return -1;
+			}
+		}
+		return -1;
 	}
 	
 	
